@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间：绑定一个对应的Dao/Mapper接口 -->
+<mapper namespace="com.gang.dao.UserDao">
+
+    <select id="queryUserList" resultType="com.gang.pojo.User">
+        select * from user
+    </select>
+
+    <select id="getUserById" parameterType="int" resultType="com.gang.pojo.User">
+        select * from user where id = #{_parameter,javaType=int,jdbcType=int}
+    </select>
+
+    <insert id="insertUser" parameterType="com.gang.pojo.User" useGeneratedKeys="true"
+            keyProperty="id" keyColumn="id">
+        insert into user(name, pwd) values (#{name},#{pwd})
+    </insert>
+
+    <insert id="plInsertUser" parameterType="com.gang.pojo.User" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into user(name,pwd) values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.name},#{item.pwd})
+        </foreach>
+    </insert>
+
+    <update id="updateUser" parameterType="com.gang.pojo.User">
+        update user set
+            name = #{name},
+            pwd = #{pwd}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        delete from user where id = #{_parameter}
+    </delete>
+
+</mapper>

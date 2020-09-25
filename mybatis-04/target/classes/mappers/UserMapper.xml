@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 命名空间：绑定一个对应的Dao/Mapper接口 -->
+<mapper namespace="com.gang.dao.UserDao">
+
+    <select id="queryUserList" resultType="u04">
+        select * from user
+    </select>
+
+    <select id="queryUserListWithPager" parameterType="map" resultType="u04">
+        select * from user
+        order by id
+        limit #{startIndex},#{pageSize}
+    </select>
+
+</mapper>
