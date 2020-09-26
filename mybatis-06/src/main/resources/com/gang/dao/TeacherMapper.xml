@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 核心配置文件 -->
+<mapper namespace="com.gang.dao.TeacherMapper">
+
+    <select id="getTeacher" resultMap="teacher1">
+        select a.id ,
+            a.name,
+            b.id sid,
+            b.name sname,
+            b.tid stid
+        from teacher a
+        left join student b
+        on a.id = b.tid
+    </select>
+
+    <resultMap id="teacher1" type="Teacher">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <collection property="list" ofType="Student">
+            <result property="id" column="sid"/>
+            <result property="name" column="sname"/>
+            <result property="tid" column="stid"/>
+        </collection>
+    </resultMap>
+
+</mapper>
