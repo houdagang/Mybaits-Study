@@ -26,4 +26,20 @@
         </collection>
     </resultMap>
 
+    <select id="getTeacher1" resultMap="teacher2">
+        select * from teacher
+    </select>
+
+    <resultMap id="teacher2" type="Teacher">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <collection property="list" ofType="Student"/>
+        <collection column="id" property="list" ofType="Student"
+                    select="queryStudents"/>
+    </resultMap>
+
+    <select id="queryStudents" parameterType="_int" resultType="Student">
+        select * from student where tid = #{_parameter}
+    </select>
+
 </mapper>

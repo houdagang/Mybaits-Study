@@ -10,4 +10,6 @@ import com.gang.pojo.Teacher;
  */
 public interface TeacherMapper {
     Teacher getTeacher();
+
+    Teacher getTeacher1();
 }

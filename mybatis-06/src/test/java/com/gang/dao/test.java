@@ -29,9 +29,8 @@ public class test {
             }
 
             TeacherMapper teacherMapper = sqlSession.getMapper(TeacherMapper.class);
-            Teacher teacher = teacherMapper.getTeacher();
+            Teacher teacher = teacherMapper.getTeacher1();
             System.out.println(teacher);
-
 
         } catch (Exception e) {
             e.printStackTrace();
